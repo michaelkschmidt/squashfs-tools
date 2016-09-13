@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>squashfs</id>
+    <title>SquashFS</title>
+    <version>4.3.0</version>
+    <authors>Phillip Lougher, Robert Lougher,Sebastiaan Ebeltjes</authors>
+    <owners>Frank Hunleth,Greg Mefford</owners>
+    <summary>SquashFS Tools built for Windows</summary>
+    <description>Squashfs is a highly compressed read-only filesystem for Linux. Squashfs compresses both files, inodes and directories, and supports block sizes up to 1Mbytes for greater compression. It is implemented as a kernel module under VFS.</description>
+    <releaseNotes>https://sourceforge.net/projects/squashfs/files/squashfs/squashfs4.3/</releaseNotes>
+    <projectUrl>https://sourceforge.net/projects/squashfs</projectUrl>
+    <tags></tags>
+    <packageSourceUrl>https://sourceforge.net/projects/squashfs</packageSourceUrl>
+    <docsUrl>https://sourceforge.net/projects/squashfs</docsUrl>
+    <bugTrackerUrl>https://sourceforge.net/p/squashfs/_list/tickets</bugTrackerUrl>
+    <projectSourceUrl>http://domoticx.com/bestandssysteem-squashfs-tools-software/</projectSourceUrl>
+    <licenseUrl>https://sourceforge.net/directory/license:gpl/</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

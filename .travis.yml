@@ -1,0 +1,14 @@
+language: c
+
+sudo: required
+dist: trusty
+
+cache:
+    directories:
+        - build/dl
+
+before_install:
+    - scripts/ci_install_deps.sh
+
+script:
+    - scripts/ci_build.sh    
