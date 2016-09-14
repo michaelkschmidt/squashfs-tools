@@ -10,5 +10,5 @@ From a Cygwin Shell, run
 ```
 
 # TODO
-- [ ] Update version in squashfs.nuspec dynamicly
+- [x] Update version in squashfs.nuspec dynamicly
 - [ ] Cross compile from Linux (Need for Travis CI)

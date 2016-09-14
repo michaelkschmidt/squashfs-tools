@@ -80,6 +80,7 @@ if [[ "$SKIP_PACKAGE" != "true" ]]; then
     # Build Windows package
     mkdir -p $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
     cp scripts/squashfs.nuspec $SQUASHFS_INSTALL_DIR/squashfs/
+    sed -i "s/%VERSION%/$(cat VERSION)/" $SQUASHFS_INSTALL_DIR/squashfs/squashfs.nuspec
     cp squashfs-tools/mksquashfs.exe $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
     cp squashfs-tools/unsquashfs.exe $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
     # TODO:  Generate this list from LDD

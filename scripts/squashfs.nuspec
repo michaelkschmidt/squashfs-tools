@@ -3,9 +3,9 @@
   <metadata>
     <id>squashfs</id>
     <title>SquashFS</title>
-    <version>4.3.0</version>
+    <version>%VERSION%</version>
     <authors>Phillip Lougher, Robert Lougher,Sebastiaan Ebeltjes</authors>
-    <owners>Frank Hunleth,Greg Mefford</owners>
+    <owners>Frank Hunleth,Greg Mefford,Michael Schmidt</owners>
     <summary>SquashFS Tools built for Windows</summary>
     <description>Squashfs is a highly compressed read-only filesystem for Linux. Squashfs compresses both files, inodes and directories, and supports block sizes up to 1Mbytes for greater compression. It is implemented as a kernel module under VFS.</description>
     <releaseNotes>https://sourceforge.net/projects/squashfs/files/squashfs/squashfs4.3/</releaseNotes>
@@ -14,7 +14,7 @@
     <packageSourceUrl>https://sourceforge.net/projects/squashfs</packageSourceUrl>
     <docsUrl>https://sourceforge.net/projects/squashfs</docsUrl>
     <bugTrackerUrl>https://sourceforge.net/p/squashfs/_list/tickets</bugTrackerUrl>
-    <projectSourceUrl>http://domoticx.com/bestandssysteem-squashfs-tools-software/</projectSourceUrl>
+    <projectSourceUrl>https://github.com/michaelkschmidt/squashfs-tools</projectSourceUrl>
     <licenseUrl>https://sourceforge.net/directory/license:gpl/</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
