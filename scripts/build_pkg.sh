@@ -27,8 +27,7 @@ MAKE_FLAGS=-j8
 LDD=ldd
 
 if [[ -z $CROSS_COMPILE ]]; then
-    CROSS_COMPILE=host
-
+   
     if [[ $(uname -s) = "Darwin" ]]; then
         SKIP_PACKAGE=true
         LDD="otool -L"
@@ -37,12 +36,6 @@ else
     CONFIGURE_ARGS=--host=$CROSS_COMPILE
 fi
 
-DEPS_INSTALL_DIR=$BUILD_DIR/$CROSS_COMPILE/deps/usr
-SQUASHFS_INSTALL_DIR=$BUILD_DIR/$CROSS_COMPILE/fwup-staging/usr
-PKG_CONFIG_PATH=$DEPS_INSTALL_DIR/lib/pkgconfig
-
-export LZO_DIR=$BUILD_DIR/$CROSS_COMPILE/deps/lzo-*
-export LZMA_DIR=$BUILD_DIR/$CROSS_COMPILE/deps/lzma-*
 
 # Initial sanity checks
 if [[ ! -e $BASE_DIR/squashfs-tools ]]; then
@@ -51,7 +44,8 @@ if [[ ! -e $BASE_DIR/squashfs-tools ]]; then
 fi
 
 # Build the dependencies
-$BASE_DIR/scripts/download_deps.sh
+. $BASE_DIR/scripts/download_deps.sh
+SQUASHFS_INSTALL_DIR=$DEPS_DIR/staging/
 
 # Initialize some directories
 mkdir -p $BUILD_DIR
@@ -63,7 +57,8 @@ pushd $BUILD_DIR
 ln -sf $BASE_DIR/squashfs-tools $BUILD_DIR/
 pushd squashfs-tools
 
-export EXTRA_CFLAGS="-Dlinux -DFNM_EXTMATCH=0 -I$BASE_DIR/3rdparty/include"
+export LIBRARY_PATH=$LIBRARY_PATH:$DEPS_INSTALL_DIR/lib
+export EXTRA_CFLAGS="-Dlinux -DFNM_EXTMATCH=0 -D'sigtimedwait(a,b,c)=sigwaitinfo(a,b)' -I$LZMA_DIR/C -I$DEPS_INSTALL_DIR/include"
 make clean
 make $MAKE_FLAGS
 
@@ -78,25 +73,31 @@ popd
 # Return to the base directory
 popd
 
-# Package fwup
+# Package squashfs
 if [[ "$SKIP_PACKAGE" != "true" ]]; then
-    FWUP_VERSION=$(cat VERSION)
+    SQUASHFS_VERSION=$(cat VERSION)
+    
     # Build Windows package
-    rm -f fwup.exe
-    cp $SQUASHFS_INSTALL_DIR/bin/fwup.exe .
+    mkdir -p $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
+    cp scripts/squashfs.nuspec $SQUASHFS_INSTALL_DIR/squashfs/
+    cp squashfs-tools/mksquashfs.exe $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
+    cp squashfs-tools/unsquashfs.exe $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools
+    # TODO:  Generate this list from LDD
+    cp /usr/bin/cygwin1.dll $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools/
+    cp /usr/bin/cygz.dll $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools/
+    cp /usr/bin/cyggcc_s-1.dll $SQUASHFS_INSTALL_DIR/squashfs/tools/squashfs-tools/
     
-    mkdir -p $SQUASHFS_INSTALL_DIR/fwup/tools
-    cp scripts/fwup.nuspec $SQUASHFS_INSTALL_DIR/fwup/
-    cp $SQUASHFS_INSTALL_DIR/bin/fwup.exe $SQUASHFS_INSTALL_DIR/fwup/tools/
-    
-    pushd $SQUASHFS_INSTALL_DIR/fwup/
+    pushd $SQUASHFS_INSTALL_DIR/squashfs/
     rm -f *.nupkg
 
-    export ChocolateyInstall=$DEPS_INSTALL_DIR/chocolatey
-    $ChocolateyInstall/console/choco.exe pack --allow-unofficial fwup.nuspec
+    # TODO:  Run from CI
+    # export ChocolateyInstall=$DEPS_INSTALL_DIR/chocolatey
+    # $ChocolateyInstall/console/choco.exe pack --allow-unofficial squashfs.nuspec
+    choco pack squashfs.nuspec
     popd
+
     rm -f *.nupkg
-    cp $SQUASHFS_INSTALL_DIR/fwup/*.nupkg .
+    cp $SQUASHFS_INSTALL_DIR/squashfs/*.nupkg .
 fi
 
 

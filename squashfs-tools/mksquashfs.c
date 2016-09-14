@@ -4893,6 +4893,7 @@ void calculate_queue_sizes(int mem, int *readq, int *fragq, int *bwriteq,
 	printf("mksquashfs version 4.3 (2014/05/12)\n");\
 	printf("copyright (C) 2014 Phillip Lougher "\
 		"<phillip@squashfs.org.uk>\n\n"); \
+	printf("Cygwin Port by Sebastiaan Ebeltjes (Domoticx.nl)\n");\
 	printf("This program is free software; you can redistribute it and/or"\
 		"\n");\
 	printf("modify it under the terms of the GNU General Public License"\
