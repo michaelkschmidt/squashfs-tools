@@ -9,6 +9,12 @@ From a Cygwin Shell, run
 ./scripts/build_pkg.sh
 ```
 
+# Running
+Install from Chocolatey
+```
+choco install squashfs
+```
+
 # TODO
 - [x] Update version in squashfs.nuspec dynamicly
 - [ ] Cross compile from Linux (Need for Travis CI)
