@@ -11,10 +11,10 @@
     <releaseNotes>https://sourceforge.net/projects/squashfs/files/squashfs/squashfs4.3/</releaseNotes>
     <projectUrl>https://sourceforge.net/projects/squashfs</projectUrl>
     <tags></tags>
-    <packageSourceUrl>https://sourceforge.net/projects/squashfs</packageSourceUrl>
+    <packageSourceUrl>https://github.com/michaelkschmidt/squashfs-tools</packageSourceUrl>
     <docsUrl>https://sourceforge.net/projects/squashfs</docsUrl>
     <bugTrackerUrl>https://sourceforge.net/p/squashfs/_list/tickets</bugTrackerUrl>
-    <projectSourceUrl>https://github.com/michaelkschmidt/squashfs-tools</projectSourceUrl>
+    <projectSourceUrl>https://sourceforge.net/projects/squashfs</projectSourceUrl>
     <licenseUrl>https://sourceforge.net/directory/license:gpl/</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
