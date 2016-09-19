@@ -15,7 +15,7 @@
     <docsUrl>https://sourceforge.net/projects/squashfs</docsUrl>
     <bugTrackerUrl>https://sourceforge.net/p/squashfs/_list/tickets</bugTrackerUrl>
     <projectSourceUrl>https://sourceforge.net/projects/squashfs</projectSourceUrl>
-    <licenseUrl>https://sourceforge.net/directory/license:gpl/</licenseUrl>
+    <licenseUrl>https://github.com/michaelkschmidt/squashfs-tools/blob/v%VERSION%/COPYING</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
